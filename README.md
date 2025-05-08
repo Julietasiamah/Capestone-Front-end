@@ -1,17 +1,5 @@
 # React + Vite
 
-Dato che mi piace cucinare e creare menù settimanali per poter provare anche nuove ricette, ho pensato di fare un progetto che consiste nello sviluppo di un’applicazione web full-stack che consente agli utenti di cercare ricette online, creare un piano pasti settimanale personalizzato e generare automaticamente la lista della spesa in base al menù della settimana.
-Obiettivo del progetto:
-Facilitare la pianificazione dei pasti in modo semplice e veloce, riducendo il tempo speso a decidere cosa cucinare e aiutando a organizzare meglio gli acquisti alimentari.
-Tecnologie utilizzate:
-Frontend: framework React (come styling base utilizerò Bootstrap)
-
-Tecnologie che utilizzerò:
-Frontend: framework React (come styling base utilizerò Bootstrap)
-Backend: Spring Boot, Spring Data JPA
-
-Database: PostgreSQL
-
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

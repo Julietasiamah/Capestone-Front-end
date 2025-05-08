@@ -16,13 +16,10 @@ const MyNavBar = () => {
               Home
             </Nav.Link>
             <Nav.Link as={Link} to="/weekly-plan">
-              Weekly Plan
+              Piano Settimanale
             </Nav.Link>
             <Nav.Link as={Link} to="/groceries">
-              Groceries
-            </Nav.Link>
-            <Nav.Link as={Link} to="/recipes">
-              Recipes
+              Gestione spesa
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

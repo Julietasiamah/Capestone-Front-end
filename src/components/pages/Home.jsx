@@ -3,10 +3,27 @@ import Vegetarian from "../../assets/vegetarian.avif";
 import Onnivoro from "../../assets/Onnivoro.avif";
 import Vegano from "../../assets/veg.avif";
 import Senzaglu from "../../assets/senzaglu.avif";
-import Pescetarian from "../../assets/pescetarian.avif";
-import Keto from "../../assets/keto.avif";
+
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { fetchWeeklyMealPlan } from "../../redux/action/mealPlanAction";
+import DietPreferenceCard from "../DietPreferenceCard";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleDietClick = (diet) => {
+    dispatch(fetchWeeklyMealPlan(diet)); //Genera piano settimanale per la dieta selezionata
+    navigate("/weekly-plan");
+  };
+
+  const preferences = [
+    { title: "Nessuna preferenza", image: Onnivoro, diet: "" },
+    { title: "Vegetariano", image: Vegetarian, diet: "vegetarian" },
+    { title: "Vegano", image: Vegano, diet: "vegan" },
+    { title: "Senza glutine", image: Senzaglu, diet: "gluten free" },
+  ];
+
   return (
     <Container>
       <Alert
@@ -26,86 +43,19 @@ const Home = () => {
       <Row className="mt-5">
         <Col>
           <h4 className="mb-3">Preferenze alimentari</h4>
-          <div className="d-flex flex-wrap gap-2">
-            <Container>
-              <Row>
-                <Col md={4}>
-                  <Card>
-                    <Card.Img variant="top" src={Onnivoro} />
-                    <Card.Body>
-                      <Card.Title>Card Title</Card.Title>
-                      <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </Card.Text>
-                      <Button variant="outline-success">No preference</Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-                <Col md={4}>
-                  <Card>
-                    <Card.Img variant="top" src={Vegetarian} />
-                    <Card.Body>
-                      <Card.Title>Card Title</Card.Title>
-                      <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </Card.Text>
-                      <Button variant="outline-success">Vegetarian</Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
 
-                <Col md={4}>
-                  <Card>
-                    <Card.Img variant="top" src={Vegano} />
-                    <Card.Body>
-                      <Card.Title>Card Title</Card.Title>
-                      <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </Card.Text>
-                      <Button variant="outline-success">Vegano</Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-                <Col md={4}>
-                  <Card>
-                    <Card.Img variant="top" src={Senzaglu} />
-                    <Card.Body>
-                      <Card.Title>Card Title</Card.Title>
-                      <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </Card.Text>
-                      <Button variant="outline-success">Gluten free</Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-
-                <Col md={4}>
-                  <Card>
-                    <Card.Img variant="top" src={Keto} />
-                    <Card.Body>
-                      <Card.Title>Card Title</Card.Title>
-                      <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </Card.Text>
-                      <Button variant="outline-success">Keto</Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-                <Col md={4}>
-                  <Card>
-                    <Card.Img variant="top" src={Pescetarian} />
-                    <Card.Body>
-                      <Card.Title>Card Title</Card.Title>
-                      <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </Card.Text>
-                      <Button variant="outline-success">Pescetarian</Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              </Row>
-            </Container>
-          </div>
+          <Row>
+            {preferences.map((pref, idx) => (
+              <Col md={6} key={idx}>
+                <DietPreferenceCard
+                  title={pref.title}
+                  image={pref.image}
+                  description="Pasti adatti alla tua dieta"
+                  onClick={() => handleDietClick(pref.diet)}
+                />
+              </Col>
+            ))}
+          </Row>
         </Col>
       </Row>
     </Container>
