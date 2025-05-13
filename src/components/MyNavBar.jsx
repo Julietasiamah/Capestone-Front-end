@@ -21,6 +21,9 @@ const MyNavBar = () => {
             <Nav.Link as={Link} to="/groceries">
               Gestione spesa
             </Nav.Link>
+            <Nav.Link as={Link} to="/recipes">
+              Le mie ricette
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

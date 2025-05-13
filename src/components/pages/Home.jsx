@@ -4,24 +4,24 @@ import Onnivoro from "../../assets/Onnivoro.avif";
 import Vegano from "../../assets/veg.avif";
 import Senzaglu from "../../assets/senzaglu.avif";
 
-import { useDispatch } from "react-redux";
+/* import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchWeeklyMealPlan } from "../../redux/action/mealPlanAction";
+import { fetchWeeklyMealPlan } from "../../redux/action/mealPlanAction"; */
 import DietPreferenceCard from "../DietPreferenceCard";
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const handleDietClick = (diet) => {
+  /* const dispatch = useDispatch();
+  const navigate = useNavigate(); */
+  /* const handleDietClick = (diet) => {
     dispatch(fetchWeeklyMealPlan(diet)); //Genera piano settimanale per la dieta selezionata
     navigate("/weekly-plan");
-  };
+  }; */
 
   const preferences = [
-    { title: "Nessuna preferenza", image: Onnivoro, diet: "" },
-    { title: "Vegetariano", image: Vegetarian, diet: "vegetarian" },
-    { title: "Vegano", image: Vegano, diet: "vegan" },
-    { title: "Senza glutine", image: Senzaglu, diet: "gluten free" },
+    { title: "Nessuna preferenza", image: Onnivoro, diet: "NESSUNA_PREFERENZA" },
+    { title: "Vegetariano", image: Vegetarian, diet: "VEGETARIANO" },
+    { title: "Vegano", image: Vegano, diet: "VEGANO" },
+    { title: "Senza glutine", image: Senzaglu, diet: "SENZA_GLUTINE" },
   ];
 
   return (
@@ -51,7 +51,7 @@ const Home = () => {
                   title={pref.title}
                   image={pref.image}
                   description="Pasti adatti alla tua dieta"
-                  onClick={() => handleDietClick(pref.diet)}
+                  diet={pref.diet} //Diet type
                 />
               </Col>
             ))}

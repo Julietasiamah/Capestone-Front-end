@@ -4,15 +4,17 @@ export const SET_LOADING = "SET_LOADING";
 
 //fetch dei pasti
 export const fetchWeeklyMealPlan = async (diet, usedMealIds) => {
-  const API_KEY = "f1e25e23f28944539e74856b31263ebb";
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&diet=${diet}&number=10&addRecipeInformation=true`;
+  // const API_KEY = "f1e25e23f28944539e74856b31263ebb";
+  // const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&diet=${diet}&number=10&addRecipeInformation=true`;
+  const url = `http://localhost:8080/pasti/preferenza/${diet}`;
 
   const resp = await fetch(url);
   if (!resp.ok) throw new Error("Errorre nella chiamata");
 
   const data = await resp.json();
 
-  const uniqueMeals = data.results.filter((meal) => !usedMealIds.includes(meal.id));
+  //filtra i pasti per evitare duplicati
+  const uniqueMeals = data.filter((meal) => !usedMealIds.includes(meal.id));
 
   //condizione per avere solamente due pasti (PRANZO E CENA)
   if (uniqueMeals.length >= 2) {

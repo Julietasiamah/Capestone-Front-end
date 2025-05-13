@@ -3,49 +3,75 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const WeeklyPlan = () => {
-  const weeklyPlan = useSelector((state) => state.mealPlan.weeklyPlan);
-  const mealLabels = ["Lunch", "Dinner"];
+  const { weeklyPlan, loading, error } = useSelector((state) => state.mealPlan);
   const navigate = useNavigate();
+  const clickRecipe = () => {
+    navigate("/Groceries");
+  };
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <Spinner animation="border" />
+        <p>Caricamento piano settimanale...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center mt-5 text-danger">
+        <p>Errore: {error}</p>
+      </div>
+    );
+  }
+
+  if (!weeklyPlan) {
+    return (
+      <div className="text-center mt-5">
+        <p>Nessun piano settimanale disponibile.</p>
+      </div>
+    );
+  }
 
   return (
-    <Container>
-      <h2 className="mb-4 mt-4 text-center">Your weekly plan</h2>
-      {!weeklyPlan ? (
-        <div className="text-center">
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
+    <Container className="mt-4">
+      <h2 className="text-center mb-4">Piano Settimanale</h2>
+
+      {Object.entries(weeklyPlan.week).map(([day, { meals }], index) => (
+        <div key={index} className="mb-5">
+          <h4 className=" mb-3">{day}</h4>
+          <Row>
+            {meals.map((meal, idx) => (
+              <Col md={6} key={idx} className="mb-3">
+                <h6>{idx === 0 ? "PRANZO" : "CENA"}</h6>
+                <Card className="h-100 shadow-sm">
+                  <Card.Img
+                    variant="top"
+                    src={meal.imgUrl}
+                    style={{ objectFit: "cover", height: "450px", width: "500px" }}
+                  />
+                  <Card.Body>
+                    <Card.Title>{meal.nome}</Card.Title>
+                    <Card.Text>{meal.descrizione}</Card.Text>
+                    <Button variant="outline-success" onClick={clickRecipe}>
+                      Visualizza ricetta
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
         </div>
-      ) : (
-        Object.entries(weeklyPlan).map(([day, meals]) => (
-          <div key={day} className="mb-4">
-            <h4>{day.toUpperCase()}</h4>
-            <Row>
-              {meals.slice(0, 2).map((meal, index) => (
-                <Col md={6} key={meal.id} className="mb-3">
-                  <Card>
-                    <Card.Header>{mealLabels[index]}</Card.Header>
-                    <Card.Img variant="top" src={meal.image} />
-                    <Card.Body>
-                      <Card.Title>{meal.title}</Card.Title>
-                      {meal.dishTypes?.length > 0 && <p>Type: {meal.dishTypes?.join(", ")}</p>}
+      ))}
 
-                      <a href={meal.sourceUrl} target="_blank" rel="noopener noreferrer">
-                        Vai alle ricette
-                      </a>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </div>
-        ))
-      )}
-
-      <Button variant="success" className="mb-4" onClick={() => navigate("/groceries")}>
-        Vai alla lista della spesa
-      </Button>
+      <div className="text-center">
+        <Button variant="success" onClick={() => navigate("/groceries")}>
+          Vai alla lista della spesa
+        </Button>
+      </div>
     </Container>
   );
 };
+
 export default WeeklyPlan;

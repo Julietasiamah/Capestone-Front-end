@@ -84,3 +84,17 @@ h3 {
   transition: transform 0.2s;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Recipe*/
+/* .ingredient-list {
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+} */
+/*Footer*/
+.footer {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  font-size: 0.9rem;
+  text-align: center;
+}
