@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 const WeeklyPlan = () => {
   const { weeklyPlan, loading, error } = useSelector((state) => state.mealPlan);
   const navigate = useNavigate();
-  const clickRecipe = () => {
-    navigate("/Groceries");
-  };
+  /*  const clickRecipe = () => {
+    navigate(`/recipes/${meal.pasto.id}`);
+  }; */
 
   if (loading) {
     return (
@@ -53,8 +53,7 @@ const WeeklyPlan = () => {
                   />
                   <Card.Body>
                     <Card.Title>{meal.nome}</Card.Title>
-                    <Card.Text>{meal.descrizione}</Card.Text>
-                    <Button variant="outline-success" onClick={clickRecipe}>
+                    <Button variant="outline-success" onClick={() => navigate(`/recipes/${meal.id}`)}>
                       Visualizza ricetta
                     </Button>
                   </Card.Body>

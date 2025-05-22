@@ -1,7 +1,7 @@
 import { Button, Card } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { generateWeeklyPlanFromSearch } from "../redux/action/mealPlanAction";
+import { generateWeeklyPlanFromSearch } from "../redux/actions/mealPlanAction";
 
 const DietPreferenceCard = ({ title, image, diet }) => {
   const dispatch = useDispatch();

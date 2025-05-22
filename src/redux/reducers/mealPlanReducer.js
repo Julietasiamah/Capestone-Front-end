@@ -1,4 +1,4 @@
-import { SET_ERROR, SET_LOADING, SET_WEEKLY_PLAN } from "../action/mealPlanAction";
+import { SET_ERROR, SET_LOADING, SET_WEEKLY_PLAN } from "../actions/mealPlanAction";
 
 // Stato iniziale
 const initialState = {

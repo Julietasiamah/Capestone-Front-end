@@ -6,22 +6,46 @@ import Groceries from "./components/pages/Groceries";
 import Home from "./components/pages/Home";
 import Recipe from "./components/pages/Recipe";
 import MyFooter from "./components/MyFooter";
+import RegisterPage from "./components/RegisterPage";
+import LoginPage from "./components/LoginPage";
+import WelcomePage from "./components/WelcomePage";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <MyNavBar />
+        {window.location.pathname !== "/login" &&
+          window.location.pathname !== "/register" &&
+          window.location.pathname !== "/" && <MyNavBar />}
+
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/weekly-plan" element={<WeeklyPlan />} />
           <Route path="/groceries" element={<Groceries />} />
-          <Route path="/recipes" element={<Recipe />} />
+          <Route path="/recipes/:id" element={<Recipe />} />
         </Routes>
-        <MyFooter />
+
+        {window.location.pathname !== "/login" &&
+          window.location.pathname !== "/register" &&
+          window.location.pathname !== "/" && <MyFooter />}
       </BrowserRouter>
     </>
   );
 }
+
+/* import ProtectedRoute from "./components/ProtectedRoute";
+
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route
+    path="/weekly-plan"
+    element={
+      <ProtectedRoute>
+        <WeeklyPlan />
+      </ProtectedRoute>
+    } */
 
 export default App;

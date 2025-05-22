@@ -1,28 +1,38 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import Mymeal from "../assets/meal2.avif";
 import { Link } from "react-router-dom";
+import { BookFill, CalendarFill, CartFill, HouseFill } from "react-bootstrap-icons";
+import LogoutButton from "./LogoutButton";
 
 const MyNavBar = () => {
   return (
     <Navbar expand="lg" className="navbar">
       <Container fluid>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand as={Link} to="/home">
           <img src={Mymeal} alt="MyMeal" height="45" className="d-inline-block align-top" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="main-navbar-nav" />
         <Navbar.Collapse id="main-navbar-nav" className="justify-content-end">
           <Nav className="gap-3">
-            <Nav.Link as={Link} to="/">
-              Home
+            <Nav.Link as={Link} to="/home">
+              <HouseFill className="fs-4" />
+              <p className="fs-6 m-0">Home</p>
             </Nav.Link>
             <Nav.Link as={Link} to="/weekly-plan">
-              Piano Settimanale
+              <CalendarFill className="fs-4" />
+              <p className="fs-6 m-0">Piani</p>
             </Nav.Link>
             <Nav.Link as={Link} to="/groceries">
-              Gestione spesa
+              <CartFill className="fs-4" />
+              <p className="fs-6 m-0">Spesa</p>
             </Nav.Link>
             <Nav.Link as={Link} to="/recipes">
-              Le mie ricette
+              <BookFill className="fs-4" />
+              <p className="fs-6 m-0">Ricette</p>
+            </Nav.Link>
+            <Nav.Link as="span">
+              <LogoutButton />
+              <p className="fs-6 m-0">Logout</p>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

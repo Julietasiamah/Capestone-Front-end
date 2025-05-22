@@ -1,22 +1,61 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@600&display=swap");
 
-#root {
-  --primary-color: #6fcf97;
-  --accent-color: #ff9f1c;
-  --bg-light: #f5f5f5;
-  --text-dark: #2c2c2c;
-  --card-bg: #ffffff;
+/* Variabili colori */
+:root {
+  --primary-color: #c6e0f9; /* blu polvere */
+  --accent-color: #d97b58; /* terracotta */
+  --text-dark: #172a3a;
+  --card-bg: #ffffffb3; /* sfondo card neutro */
   --border-radius: 12px;
-  font-family: "Inter", sans-serif;
 }
+
+/* Global Styles */
 body {
+  /* background-color: #65615a; beige crema */
+  background-image: url("./assets/sfond4.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--text-dark);
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
   margin: 0;
   padding: 0;
-
-  background-color: var(--bg-light);
-  color: var(--text-dark);
-  line-height: 1.6;
 }
+
+/* Titoli */
+h1,
+h2,
+h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #8daa91; /* verde salvia */
+  margin-bottom: 0.5rem;
+}
+#welcome {
+  color: #0c151d;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* Paragrafi */
+p {
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+}
+
 /* Navbar */
 .navbar {
   background-color: var(--card-bg);
@@ -54,16 +93,34 @@ body {
   border-radius: var(--border-radius);
   padding: 0.6rem 1.2rem;
   font-weight: 600;
+  color: #fff;
   transition: background-color 0.2s ease-in-out;
 }
 
 .btn-primary:hover {
-  background-color: #57ba7d;
+  background-color: #8daa91;
 }
 
 .btn-accent {
   background-color: var(--accent-color);
   color: #fff;
+  border-radius: var(--border-radius);
+  padding: 0.6rem 1.2rem;
+  border: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-accent:hover {
+  background-color: #c76045;
+}
+/*Form*/
+#register {
+  color: #172b3a;
+}
+/*Register*/
+#container-register {
+  background-color: #edf7fd;
 }
 
 /* Section spacing */
@@ -71,30 +128,21 @@ section {
   padding: 2rem 1rem;
 }
 
-h1,
-h2,
-h3 {
-  font-weight: 600;
-  color: var(--text-dark);
+/* Diet Card */
+.diet-card {
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/*diet preference*/
 .diet-card:hover {
   transform: scale(1.02);
-  transition: transform 0.2s;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Recipe*/
-/* .ingredient-list {
-  padding: 0;
-  display: flex;
-  justify-content: space-around;
-} */
-/*Footer*/
+/* Footer */
 .footer {
   background-color: #f8f9fa;
   color: #6c757d;
   font-size: 0.9rem;
   text-align: center;
+  padding: 1rem 0;
 }
