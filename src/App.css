@@ -4,10 +4,12 @@
 /* Variabili colori */
 :root {
   --primary-color: #c6e0f9; /* blu polvere */
-  --accent-color: #d97b58; /* terracotta */
+  --accent-color: #d0dacf;
   --text-dark: #172a3a;
-  --card-bg: #ffffffb3; /* sfondo card neutro */
+  --card-bg: #4fa289; /* verde chiaro */
   --border-radius: 12px;
+  --p-text: #ebe5e5;
+  --title-text: #c0c0c0;
 }
 
 /* Global Styles */
@@ -30,7 +32,7 @@ h2,
 h3 {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
-  color: #8daa91; /* verde salvia */
+  /* verde salvia */
   margin-bottom: 0.5rem;
 }
 #welcome {
@@ -52,13 +54,12 @@ h3 {
 /* Paragrafi */
 p {
   font-size: 1.2rem;
-  color: var(--text-dark);
+  color: var(--p-text);
   margin-bottom: 2rem;
 }
 
 /* Navbar */
 .navbar {
-  background-color: var(--card-bg);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   padding: 0.8rem 1.5rem;
 }
@@ -137,10 +138,16 @@ section {
   transform: scale(1.02);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+#generazione {
+  background-color: #125e47;
+}
+#generazione:hover {
+  background-color: #07bd85;
+}
 
 /* Footer */
 .footer {
-  background-color: #f8f9fa;
+  background-color: var (--card-bg);
   color: #6c757d;
   font-size: 0.9rem;
   text-align: center;

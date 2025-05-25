@@ -14,23 +14,28 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        {window.location.pathname !== "/login" &&
-          window.location.pathname !== "/register" &&
-          window.location.pathname !== "/" && <MyNavBar />}
+        <div className="d-flex flex-column min-vh-100">
+          {/*forzo il footer in basso anche quando ce poco contenuto  */}
+          {window.location.pathname !== "/login" &&
+            window.location.pathname !== "/register" &&
+            window.location.pathname !== "/" && <MyNavBar />}
 
-        <Routes>
-          <Route path="/" element={<WelcomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/weekly-plan" element={<WeeklyPlan />} />
-          <Route path="/groceries" element={<Groceries />} />
-          <Route path="/recipes/:id" element={<Recipe />} />
-        </Routes>
+          <main>
+            <Routes>
+              <Route path="/" element={<WelcomePage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/weekly-plan" element={<WeeklyPlan />} />
+              <Route path="/groceries" element={<Groceries />} />
+              <Route path="/recipes/:id" element={<Recipe />} />
+            </Routes>
+          </main>
 
-        {window.location.pathname !== "/login" &&
-          window.location.pathname !== "/register" &&
-          window.location.pathname !== "/" && <MyFooter />}
+          {window.location.pathname !== "/login" &&
+            window.location.pathname !== "/register" &&
+            window.location.pathname !== "/" && <MyFooter />}
+        </div>
       </BrowserRouter>
     </>
   );

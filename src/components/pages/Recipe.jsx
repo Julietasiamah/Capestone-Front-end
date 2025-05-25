@@ -1,4 +1,4 @@
-import { Card, Col, Container, Row, Spinner } from "react-bootstrap";
+import { Button, Card, Col, Container, Row, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -49,26 +49,29 @@ const Recipe = () => {
 
   return (
     <Container>
-      <h2 className="text-center mt-3">{recipe.nome}</h2>
+      <h2 className="text-center mt-3" style={{ color: "#c0c0c0" }}>
+        {recipe.nome}
+      </h2>
       <Row>
         <Col md={7}>
-          <Card>
+          <Card style={{ backgroundColor: "#D0DACF" }}>
             <Card.Img variant="top" src={recipe.imgUrl} />
-            <Card.Body>
-              <Card.Header>Ingredienti</Card.Header>
-              <Card.Text>
-                <ul>
-                  {ingredienti.map((ing, idx) => (
-                    <li key={idx}>{ing.trim()}</li>
-                  ))}
-                </ul>
-              </Card.Text>
-            </Card.Body>
           </Card>
         </Col>
         <Col>
-          <h6 className="mt-3 fw-semibold">Procedimento</h6>
-          <p>{recipe.procedimento}</p>
+          <div className="mt-3">
+            <h3 style={{ color: "#c0c0c0" }}>Ingredienti</h3>
+            {ingredienti.map((ing, idx) => (
+              <p key={idx}>{ing.trim()}</p>
+            ))}
+          </div>
+          <div className="mt-2">
+            <h3 style={{ color: "#c0c0c0" }}>Procedimento</h3>
+            <p>{recipe.procedimento}</p>
+          </div>
+          <Button variant="secondary" onClick={() => navigate(-1)}>
+            Torna indietro
+          </Button>
         </Col>
       </Row>
     </Container>

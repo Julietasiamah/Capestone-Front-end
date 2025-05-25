@@ -1,10 +1,11 @@
 import { Container } from "react-bootstrap";
+import Mylogo from "../assets/logo.jpg";
 
 const MyFooter = () => {
   return (
-    <footer className="bg-light py-3 mt-5 border-top footer">
+    <footer className=" py-3 mt-auto border-top footer">
       <Container>
-        <p>&copy; {new Date().getFullYear()} My Meal. Tutti i diritti riservati.</p>
+        <p>&copy; {new Date().getFullYear()} My MealPlanner. Tutti i diritti riservati.</p>
       </Container>
     </footer>
   );

@@ -1,8 +1,9 @@
 import { Alert, Button, Card, Col, Container, Row } from "react-bootstrap";
+
 import Vegetarian from "../../assets/vegetarian.avif";
 import Onnivoro from "../../assets/Onnivoro.avif";
 import Vegano from "../../assets/veg.avif";
-import Senzaglu from "../../assets/senzaglu.avif";
+import Senzaglu from "../../assets/senzaglu2.jpg";
 
 /* import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -29,12 +30,12 @@ const Home = () => {
       <Alert
         variant="light"
         className="mt-4 px-4 py-4 rounded-4 shadow-sm border-0 text-center"
-        style={{ backgroundColor: "#e2dbce", color: "#8daa95" }}
+        style={{ backgroundColor: "#D0DACF", color: "#8daa95" }}
       >
         <h3 className="mb-3 fw-semibold">
-          Benvenuto su <span style={{ color: "#475649" }}>MyMeal</span> – il tuo spazio per pianificare con gusto!
+          Benvenuto su <span style={{ color: "#475649" }}>MealPlanner</span> – il tuo spazio per pianificare con gusto!
         </h3>
-        <p className="mb-0" style={{ color: "#ffff" }}>
+        <p className="mb-0" style={{ color: "#02271c" }}>
           Crea il tuo piano settimanale, scopri nuove ricette e gestisci la tua spesa con semplicità.
           <br /> Inizia quando vuoi!
         </p>
@@ -42,7 +43,7 @@ const Home = () => {
 
       <Row className="mt-5">
         <Col>
-          <h4 className="mb-3">Preferenze alimentari</h4>
+          <h4 className="mb-3 text-white">Preferenze Alimentari</h4>
 
           <Row>
             {preferences.map((pref, idx) => (

@@ -44,8 +44,8 @@ const WeeklyPlan = () => {
           <Row>
             {meals.map((meal, idx) => (
               <Col md={6} key={idx} className="mb-3">
-                <h6>{idx === 0 ? "PRANZO" : "CENA"}</h6>
-                <Card className="h-100 shadow-sm">
+                <h5 className="text-center">{idx === 0 ? "PRANZO" : "CENA"}</h5>
+                <Card className="h-100 shadow-sm" style={{ backgroundColor: "#D0DACF" }}>
                   <Card.Img
                     variant="top"
                     src={meal.imgUrl}
@@ -56,6 +56,11 @@ const WeeklyPlan = () => {
                     <Button variant="outline-success" onClick={() => navigate(`/recipes/${meal.id}`)}>
                       Visualizza ricetta
                     </Button>
+                    <div className="mt-3">
+                      <Button variant="success" onClick={() => navigate("/groceries")}>
+                        Vai alla lista della spesa
+                      </Button>
+                    </div>
                   </Card.Body>
                 </Card>
               </Col>
@@ -63,12 +68,6 @@ const WeeklyPlan = () => {
           </Row>
         </div>
       ))}
-
-      <div className="text-center">
-        <Button variant="success" onClick={() => navigate("/groceries")}>
-          Vai alla lista della spesa
-        </Button>
-      </div>
     </Container>
   );
 };

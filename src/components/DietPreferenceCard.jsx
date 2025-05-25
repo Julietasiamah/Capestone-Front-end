@@ -11,11 +11,11 @@ const DietPreferenceCard = ({ title, image, diet }) => {
     navigate("/weekly-plan");
   };
   return (
-    <Card className="mb-4 shadow-sm diet-card">
+    <Card className="mb-4 shadow-sm diet-card" style={{ backgroundColor: "#D0DACF" }}>
       <Card.Img variant="top" src={image} alt={title} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
-        <Button onClick={handleClick} variant="success">
+        <Button onClick={handleClick} id="generazione">
           Genera piano settimanale
         </Button>
       </Card.Body>
