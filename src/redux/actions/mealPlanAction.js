@@ -14,13 +14,13 @@ export const generateWeeklyPlanFromSearch = (diet) => async (dispatch) => {
     // Riorganizza per giorno
     const week = {};
     const dayMap = {
-      LUNEDI: "Monday",
-      MARTEDI: "Tuesday",
-      MERCOLEDI: "Wednesday",
-      GIOVEDI: "Thursday",
-      VENERDI: "Friday",
-      SABATO: "Saturday",
-      DOMENICA: "Sunday",
+      LUNEDI: " LUNEDI",
+      MARTEDI: " MARTEDI",
+      MERCOLEDI: " MERCOLEDI",
+      GIOVEDI: " GIOVEDI",
+      VENERDI: " VENERDI",
+      SABATO: " SABATO",
+      DOMENICA: " DOMENICA",
     };
 
     data.forEach((entry) => {

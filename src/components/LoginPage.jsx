@@ -28,21 +28,35 @@ const LoginPage = () => {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="mt-5" id="container-register">
       <h2>Login</h2>
       {error && <Alert variant="danger">{error}</Alert>}
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="email" name="email" value={credentials.email} onChange={handleChange} required />
+          <Form.Label className="text-white">Email</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            style={{ backgroundColor: "#D0DACF", color: "#02271c" }}
+            value={credentials.email}
+            onChange={handleChange}
+            required
+          />
         </Form.Group>
 
         <Form.Group controlId="password" className="mt-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" name="password" value={credentials.password} onChange={handleChange} required />
+          <Form.Label className="text-white">Password</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            style={{ backgroundColor: "#D0DACF", color: "#02271c" }}
+            value={credentials.password}
+            onChange={handleChange}
+            required
+          />
         </Form.Group>
 
-        <Button type="submit" className="mt-4">
+        <Button type="submit" className="mt-4" id="register-button">
           Accedi
         </Button>
       </Form>

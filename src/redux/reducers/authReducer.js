@@ -1,4 +1,4 @@
-import { LOGIN_FAILURE, LOGIN_SUCCESS, REGISTER_FAILURE, REGISTER_SUCCESS } from "../actions/authActions";
+import { LOGIN_FAILURE, LOGIN_SUCCESS, REGISTER_FAILURE, REGISTER_SUCCESS, LOGOUT } from "../actions/authActions";
 
 const initialState = {
   token: localStorage.getItem("token") || null,
@@ -22,8 +22,11 @@ const authReducer = (state = initialState, action) => {
         error: action.payload,
       };
     case REGISTER_SUCCESS:
-      return { ...state, error: null };
-    case "LOGOUT":
+      return {
+        ...state,
+        error: null,
+      };
+    case LOGOUT:
       return {
         ...state,
         token: null,

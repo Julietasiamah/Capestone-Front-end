@@ -35,9 +35,6 @@ h3 {
   /* verde salvia */
   margin-bottom: 0.5rem;
 }
-#welcome {
-  color: #0c151d;
-}
 
 h1 {
   font-size: 2.5rem;
@@ -88,7 +85,7 @@ p {
 }
 
 /* Buttons */
-.btn-primary {
+/* .btn-primary {
   background-color: var(--primary-color);
   border: none;
   border-radius: var(--border-radius);
@@ -114,14 +111,30 @@ p {
 
 .btn-accent:hover {
   background-color: #c76045;
-}
+} */
 /*Form*/
 #register {
   color: #172b3a;
 }
-/*Register*/
+/*Welcome page*/
+#welcome {
+  /* color: #0c151d; */
+  color: #d0dacf;
+}
+
+/*Register e login*/
 #container-register {
-  background-color: #edf7fd;
+  width: 45%;
+}
+#container-register h2 {
+  margin-bottom: 1rem;
+  color: white;
+}
+#register-button:hover {
+  background-color: #07bd85;
+}
+#register-button {
+  background-color: #125e47;
 }
 
 /* Section spacing */

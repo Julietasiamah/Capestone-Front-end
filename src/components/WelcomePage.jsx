@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
+import Logo from "../assets/logo.jpg";
 import Button from "react-bootstrap/Button";
 
 const WelcomePage = () => {
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center vh-100">
-      <h1 id="welcome">My meal planner!</h1>
-      <p style={{ color: "#172A3A", fontWeight: "550" }}>Effetua login o registrazione per iniziare</p>
+    <div className="d-flex flex-column align-items-center justify-content-center vh-100" id="bg-welcome">
+      <h1 id="welcome">My MealPlanner!</h1>
+      {/* <img src={Logo} alt="logo" width="50%" style={{ borderRadius: "50%" }} /> */}
+      <p style={{ color: "#d0dacf", fontWeight: "550" }}>Effetua login o registrazione per iniziare</p>
       <div className="d-flex gap-3">
         <Link to="/login">
-          <button className="btn-primary">Login</button>
+          <Button id="register-button">Login</Button>
         </Link>
         <Link to="/register">
-          <button className="btn-primary">Registrati</button>
+          <Button id="register-button">Registrazione</Button>
         </Link>
       </div>
       {/*  <div style={{ maxWidth: "400px" }}>

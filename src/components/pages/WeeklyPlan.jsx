@@ -36,31 +36,32 @@ const WeeklyPlan = () => {
 
   return (
     <Container className="mt-4">
-      <h2 className="text-center mb-4">Piano Settimanale</h2>
+      <h2 className="text-center mb-4" style={{ color: "#c0c0c0" }}>
+        Piano Settimanale
+      </h2>
 
       {Object.entries(weeklyPlan.week).map(([day, { meals }], index) => (
         <div key={index} className="mb-5">
-          <h4 className=" mb-3">{day}</h4>
+          <h4 className=" mb-3" style={{ color: "#c0c0c0" }}>
+            {day}
+          </h4>
           <Row>
             {meals.map((meal, idx) => (
               <Col md={6} key={idx} className="mb-3">
-                <h5 className="text-center">{idx === 0 ? "PRANZO" : "CENA"}</h5>
-                <Card className="h-100 shadow-sm" style={{ backgroundColor: "#D0DACF" }}>
+                <h5 className="text-center" style={{ color: "#c0c0c0" }}>
+                  {idx === 0 ? "PRANZO" : "CENA"}
+                </h5>
+                <Card className="h-100 shadow-sm card diet-card" style={{ backgroundColor: "#D0DACF" }}>
                   <Card.Img
                     variant="top"
                     src={meal.imgUrl}
-                    style={{ objectFit: "cover", height: "450px", width: "500px" }}
+                    // style={{ objectFit: "cover", height: "50%", width: "50%" }}
                   />
                   <Card.Body>
                     <Card.Title>{meal.nome}</Card.Title>
                     <Button variant="outline-success" onClick={() => navigate(`/recipes/${meal.id}`)}>
                       Visualizza ricetta
                     </Button>
-                    <div className="mt-3">
-                      <Button variant="success" onClick={() => navigate("/groceries")}>
-                        Vai alla lista della spesa
-                      </Button>
-                    </div>
                   </Card.Body>
                 </Card>
               </Col>

@@ -27,10 +27,10 @@ const MyNavBar = () => {
               <CartFill className="fs-4" />
               <p className="fs-6 m-0">Spesa</p>
             </Nav.Link>
-            <Nav.Link as={Link} to="/recipes">
+            {/* <Nav.Link as={Link} to="/recipes">
               <BookFill className="fs-4" />
               <p className="fs-6 m-0">Ricette</p>
-            </Nav.Link>
+            </Nav.Link> */}
             <Nav.Link as="span">
               <LogoutButton />
               <p className="fs-6 m-0">Logout</p>

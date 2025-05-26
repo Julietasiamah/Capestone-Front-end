@@ -19,8 +19,18 @@ export const loginUser = (credentials) => {
       }
 
       const data = await res.json();
+
+      // Salvo token e user nei localStorage
       localStorage.setItem("token", data.token);
-      dispatch({ type: LOGIN_SUCCESS, payload: data.token });
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: {
+          token: data.token,
+          user: data.user,
+        },
+      });
     } catch (error) {
       dispatch({ type: LOGIN_FAILURE, payload: error.message });
     }
@@ -36,7 +46,10 @@ export const registerUser = (userData) => {
         body: JSON.stringify(userData),
       });
 
-      if (!res.ok) throw new Error("Registrazione fallita");
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(errorText || "Registrazione fallita");
+      }
 
       dispatch({ type: REGISTER_SUCCESS });
     } catch (error) {

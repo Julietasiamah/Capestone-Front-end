@@ -32,7 +32,9 @@ const Groceries = () => {
 
   return (
     <Container className="mt-4">
-      <h2 className="mb-4">Lista della Spesa</h2>
+      <h2 className="mb-4 " style={{ color: "#c0c0c0" }}>
+        Lista della Spesa
+      </h2>
       <Row>
         <Col md={8}>
           <Form.Control

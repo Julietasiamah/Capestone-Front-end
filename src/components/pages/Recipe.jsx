@@ -54,22 +54,31 @@ const Recipe = () => {
       </h2>
       <Row>
         <Col md={7}>
-          <Card style={{ backgroundColor: "#D0DACF" }}>
+          <Card style={{ backgroundColor: "#D0DACF" }} className="diet-card">
             <Card.Img variant="top" src={recipe.imgUrl} />
           </Card>
         </Col>
         <Col>
           <div className="mt-3">
-            <h3 style={{ color: "#c0c0c0" }}>Ingredienti</h3>
+            <h3 style={{ color: "#c0c0c0" }} className="mb-3">
+              Ingredienti
+            </h3>
             {ingredienti.map((ing, idx) => (
               <p key={idx}>{ing.trim()}</p>
             ))}
+            <div className="mt-3">
+              <Button variant="success" onClick={() => navigate("/groceries")} className="my-3" id="register-button">
+                Vai alla lista della spesa
+              </Button>
+            </div>
           </div>
           <div className="mt-2">
-            <h3 style={{ color: "#c0c0c0" }}>Procedimento</h3>
+            <h3 style={{ color: "#c0c0c0" }} className="mb-3">
+              Procedimento
+            </h3>
             <p>{recipe.procedimento}</p>
           </div>
-          <Button variant="secondary" onClick={() => navigate(-1)}>
+          <Button onClick={() => navigate(-1)} className="mb-3" id="register-button">
             Torna indietro
           </Button>
         </Col>

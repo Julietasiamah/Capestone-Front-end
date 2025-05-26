@@ -18,6 +18,7 @@ function App() {
           {/*forzo il footer in basso anche quando ce poco contenuto  */}
           {window.location.pathname !== "/login" &&
             window.location.pathname !== "/register" &&
+            window.location.pathname !== "/logout" &&
             window.location.pathname !== "/" && <MyNavBar />}
 
           <main>
@@ -29,11 +30,13 @@ function App() {
               <Route path="/weekly-plan" element={<WeeklyPlan />} />
               <Route path="/groceries" element={<Groceries />} />
               <Route path="/recipes/:id" element={<Recipe />} />
+              {/* <Route path="/lpgout" element={<LogoutButton />} /> */}
             </Routes>
           </main>
 
           {window.location.pathname !== "/login" &&
             window.location.pathname !== "/register" &&
+            window.location.pathname !== "/logout" &&
             window.location.pathname !== "/" && <MyFooter />}
         </div>
       </BrowserRouter>

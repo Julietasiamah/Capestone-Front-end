@@ -31,21 +31,42 @@ const RegisterPage = () => {
       {error && <Alert variant="danger">{error}</Alert>}
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="nome">
-          <Form.Label>Nome</Form.Label>
-          <Form.Control type="text" name="nome" value={userData.nome} onChange={handleChange} required />
+          <Form.Label className="text-white">Nome</Form.Label>
+          <Form.Control
+            type="text"
+            name="nome"
+            style={{ backgroundColor: "#D0DACF", color: "#02271c" }}
+            value={userData.nome}
+            onChange={handleChange}
+            required
+          />
         </Form.Group>
 
         <Form.Group controlId="email" className="mt-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="email" name="email" value={userData.email} onChange={handleChange} required />
+          <Form.Label className="text-white ">Email</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            style={{ backgroundColor: "#D0DACF", color: "#02271c" }}
+            value={userData.email}
+            onChange={handleChange}
+            required
+          />
         </Form.Group>
 
         <Form.Group controlId="password" className="mt-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" name="password" value={userData.password} onChange={handleChange} required />
+          <Form.Label className="text-white">Password</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            style={{ backgroundColor: "#D0DACF", color: "#02271c" }}
+            value={userData.password}
+            onChange={handleChange}
+            required
+          />
         </Form.Group>
 
-        <Button type="submit" className="mt-4">
+        <Button type="submit" className="mt-4 " id="register-button">
           Registrati
         </Button>
       </Form>
