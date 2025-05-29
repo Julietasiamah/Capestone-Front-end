@@ -1,45 +1,43 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../redux/actions/authActions";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { Button, Container, Form, Alert } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../redux/reducers/authSlice";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const error = useSelector((state) => state.auth.error);
-
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  };
+  const [form, setForm] = useState({ username: "", password: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(loginUser(credentials));
-    const token = localStorage.getItem("token");
-    if (token) {
-      navigate("/home"); // reindirizza dopo login
+    const res = await fetch("http://localhost:8080/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      dispatch(loginSuccess({ user: data.username, token: data.token }));
+      localStorage.setItem("token", data.token);
+      navigate("/home");
+    } else {
+      alert("Login fallito");
     }
   };
 
   return (
     <Container className="mt-5" id="container-register">
       <h2>Login</h2>
-      {error && <Alert variant="danger">{error}</Alert>}
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="email">
-          <Form.Label className="text-white">Email</Form.Label>
+        <Form.Group controlId="username">
+          <Form.Label className="text-white">Username</Form.Label>
           <Form.Control
-            type="email"
-            name="email"
+            type="text"
+            name="username"
+            onChange={(e) => setForm({ ...form, username: e.target.value })}
             style={{ backgroundColor: "#D0DACF", color: "#02271c" }}
-            value={credentials.email}
-            onChange={handleChange}
             required
           />
         </Form.Group>
@@ -50,14 +48,13 @@ const LoginPage = () => {
             type="password"
             name="password"
             style={{ backgroundColor: "#D0DACF", color: "#02271c" }}
-            value={credentials.password}
-            onChange={handleChange}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
             required
           />
         </Form.Group>
 
         <Button type="submit" className="mt-4" id="register-button">
-          Accedi
+          Login
         </Button>
       </Form>
     </Container>

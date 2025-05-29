@@ -1,22 +1,20 @@
 import { useDispatch } from "react-redux";
-import { logoutUser } from "../redux/actions/authActions";
+
 import { useNavigate } from "react-router-dom";
-import { PersonBadgeFill, PersonFill } from "react-bootstrap-icons";
+import { PersonBadgeFill, PersonFill, PersonWalking } from "react-bootstrap-icons";
+import { logout } from "../redux/reducers/authSlice";
 
 const LogoutButton = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    dispatch(logoutUser());
-    navigate("/login");
+    dispatch(logout());
+    navigate("/welcome");
   };
 
-  return (
-    <span style={{ cursor: "pointer" }} onClick={handleLogout}>
-      <PersonFill className="fs-4" />
-    </span>
-  );
+  return <PersonWalking onClick={handleLogout} className="fs-4" />;
+  // <p onClick={handleLogout}>Logout</p>;
 };
 
 export default LogoutButton;
