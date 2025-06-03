@@ -35,6 +35,7 @@ const MyNavBar = () => {
       <Container fluid>
         <Navbar.Brand as={Link} to="/home" className="d-flex align-items-center gap-2">
           <img src={Mylogo} alt="logo" style={{ borderRadius: "50%", width: "40px", height: "40px" }} />
+          <span className="text-white"> Ciao, {user.name}</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="main-navbar-nav" />
         <Navbar.Collapse id="main-navbar-nav" className="justify-content-end">
