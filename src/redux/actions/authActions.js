@@ -1,68 +1,69 @@
-/* export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAILURE = "LOGIN_FAILURE";
-export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-export const REGISTER_FAILURE = "REGISTER_FAILURE";
-export const LOGOUT = "LOGOUT";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { loginError, loginSuccess } from "../reducers/authReducer";
 
-export const loginUser = (credentials) => {
-  return async (dispatch) => {
-    try {
-      const res = await fetch("http://localhost:8080/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(credentials),
-      });
-
-      if (!res.ok) {
-        const errorText = await res.text();
-        throw new Error(errorText || "Credenziali non valide");
-      }
-
-      const data = await res.json();
-
-      // Salvo token e user nei localStorage
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: {
-          token: data.token,
-          user: data.user,
-        },
-      });
-    } catch (error) {
-      dispatch({ type: LOGIN_FAILURE, payload: error.message });
+//login con credenziali
+export const login = createAsyncThunk("auth/login", async (credentials, { dispatch }) => {
+  try {
+    const response = await fetch("http://localhost:8080/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(credentials),
+    });
+    if (!response.ok) {
+      throw new Error("Invalid credentials");
     }
-  };
-};
 
-export const registerUser = (userData) => {
-  return async (dispatch) => {
+    const data = await response.json();
+    console.log("Login response:", data);
+
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    dispatch(loginSuccess({ user: data.user, token: data.token }));
+  } catch (error) {
+    dispatch(loginError("Credenziali errate o server non disponibile"));
+    throw error;
+  }
+});
+
+//verifica autenticazione da LocalStorage
+/* export const checkAuthFromLocalStorage = () => (dispatch) => {
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
+  console.log(user);
+  console.log(token);
+  if (token && user) {
     try {
-      const res = await fetch("http://localhost:8080/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userData),
-      });
-
-      if (!res.ok) {
-        const errorText = await res.text();
-        throw new Error(errorText || "Registrazione fallita");
-      }
-
-      dispatch({ type: REGISTER_SUCCESS });
-    } catch (error) {
-      dispatch({ type: REGISTER_FAILURE, payload: error.message });
+      const parsedUser = JSON.parse(user);
+      dispatch(loginSuccess({ user: parsedUser, token }));
+    } catch (e) {
+      console.error("Errore parsing user da localStorage:", e);
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
     }
-  };
-};
+  }
+}; */
 
-export const logoutUser = () => {
-  return (dispatch) => {
-    localStorage.removeItem("token");
+export const checkAuthFromLocalStorage = () => (dispatch) => {
+  const token = localStorage.getItem("token");
+  const userString = localStorage.getItem("user");
+
+  console.log("user:", userString); // Debug, puoi rimuoverlo dopo
+
+  if (token && userString && userString !== "undefined") {
+    try {
+      const user = JSON.parse(userString);
+      dispatch(loginSuccess({ user, token }));
+    } catch (error) {
+      console.error("Errore parsing user da localStorage:", error);
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+    }
+  } else {
+    console.warn("Token o utente non trovato o non valido");
     localStorage.removeItem("user");
-    dispatch({ type: LOGOUT });
-  };
+    localStorage.removeItem("token");
+  }
 };
- */

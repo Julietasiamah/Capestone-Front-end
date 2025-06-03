@@ -55,7 +55,12 @@ const WeeklyPlan = () => {
                   <Card.Img
                     variant="top"
                     src={meal.imgUrl}
-                    // style={{ objectFit: "cover", height: "50%", width: "50%" }}
+                    style={{
+                      objectFit: "cover",
+                      height: "350px",
+                      width: "500px",
+                      boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
+                    }}
                   />
                   <Card.Body>
                     <Card.Title>{meal.nome}</Card.Title>

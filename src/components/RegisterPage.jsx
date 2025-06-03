@@ -1,9 +1,12 @@
-import { Alert, Button, Container, Form } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
 //import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { register } from "../redux/actions/authRegAction";
+import { useDispatch } from "react-redux";
 
 const RegisterPage = () => {
+  const dispatch = useDispatch();
   const [form, setForm] = useState({
     name: "",
     surname: "",
@@ -12,23 +15,20 @@ const RegisterPage = () => {
     password: "",
   });
 
+  console.log(form);
+  //const { error } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:8080/api/auth/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-    if (res.ok) {
+    try {
+      await dispatch(register(form));
       alert("Registrazione riuscita!");
       navigate("/login");
-    } else {
-      alert("Errore nella registrazione");
+    } catch (error) {
+      alert("Errore: " + error.message);
     }
   };
-
   return (
     <Container className="mt-5" id="container-register">
       <h2 id="register">Registrazione</h2>
@@ -39,8 +39,10 @@ const RegisterPage = () => {
           <Form.Control
             type="text"
             style={{ backgroundColor: "#D0DACF", color: "#02271c" }}
+            name="name"
+            value={form.name}
             placeholder="Inserisci il tuo nome"
-            onChange={(e) => setForm(e.target.value)}
+            onChange={(e) => setForm({ ...form, [e.target.name]: e.target.value })}
             required
           />
         </Form.Group>
@@ -50,7 +52,9 @@ const RegisterPage = () => {
             type="text"
             style={{ backgroundColor: "#D0DACF", color: "#02271c" }}
             placeholder="Inserisci il tuo cognome"
-            onChange={(e) => setForm(e.target.value)}
+            name="surname"
+            value={form.surname}
+            onChange={(e) => setForm({ ...form, [e.target.name]: e.target.value })}
             required
           />
         </Form.Group>
@@ -60,7 +64,9 @@ const RegisterPage = () => {
             type="email"
             style={{ backgroundColor: "#D0DACF", color: "#02271c" }}
             placeholder="Inserisci la tua email"
-            onChange={(e) => setForm(e.target.value)}
+            name="email"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, [e.target.name]: e.target.value })}
             required
           />
         </Form.Group>
@@ -70,7 +76,9 @@ const RegisterPage = () => {
             type="text"
             style={{ backgroundColor: "#D0DACF", color: "#02271c" }}
             placeholder="Inserisci il tuo username"
-            onChange={(e) => setForm(e.target.value)}
+            name="username"
+            value={form.username}
+            onChange={(e) => setForm({ ...form, [e.target.name]: e.target.value })}
             required
           />
         </Form.Group>
@@ -80,7 +88,9 @@ const RegisterPage = () => {
             type="password"
             style={{ backgroundColor: "#D0DACF", color: "#02271c" }}
             placeholder="Inserisci la tua password"
-            onChange={(e) => setForm(e.target.value)}
+            name="password"
+            value={form.password}
+            onChange={(e) => setForm({ ...form, [e.target.name]: e.target.value })}
             required
           />
         </Form.Group>

@@ -6,8 +6,16 @@ export const fetchRecipeByMealId = (id) => async (dispatch, getState) => {
   dispatch({ type: SET_RECIPE_LOADING });
 
   try {
-    const response = await fetch(`http://localhost:8080/ricetta/pasto/${id}`);
-    if (!response.ok) throw new Error("Errore nella richiesta");
+    const token = localStorage.getItem("token");
+    const response = await fetch(`http://localhost:8080/ricetta/pasto/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Errore nella richiesta");
+    } //throw new Error("Errore nella richiesta");
 
     const data = await response.json();
 

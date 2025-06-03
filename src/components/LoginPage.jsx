@@ -1,35 +1,38 @@
 // import { useNavigate } from "react-router-dom";
 import { Button, Container, Form, Alert } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { loginSuccess } from "../redux/reducers/authSlice";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+import { login } from "../redux/actions/authActions";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [form, setForm] = useState({ username: "", password: "" });
+  const loginError = useSelector((state) => state.auth.loginError); // Ottieni l'errore dal state di Redux
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:8080/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-    if (res.ok) {
-      const data = await res.json();
-      dispatch(loginSuccess({ user: data.username, token: data.token }));
-      localStorage.setItem("token", data.token);
+    try {
+      await dispatch(login(form)).unwrap();
       navigate("/home");
-    } else {
-      alert("Login fallito");
+      // eslint-disable-next-line no-unused-vars
+    } catch (error) {
+      // Gestisci l'errore di login qui
     }
   };
 
   return (
     <Container className="mt-5" id="container-register">
       <h2>Login</h2>
+      {loginError && (
+        <Alert variant="danger" className="mt-3">
+          {loginError}
+        </Alert>
+      )}
+
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="username">
           <Form.Label className="text-white">Username</Form.Label>

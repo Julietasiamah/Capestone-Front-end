@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
-import { PersonBadgeFill, PersonFill, PersonWalking } from "react-bootstrap-icons";
-import { logout } from "../redux/reducers/authSlice";
+import { PersonWalking } from "react-bootstrap-icons";
+import { logout } from "../redux/reducers/authReducer";
 
 const LogoutButton = () => {
   const dispatch = useDispatch();

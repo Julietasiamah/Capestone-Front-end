@@ -9,8 +9,16 @@ import MyFooter from "./components/MyFooter";
 import RegisterPage from "./components/RegisterPage";
 import LoginPage from "./components/LoginPage";
 import WelcomePage from "./components/WelcomePage";
+import { useEffect } from "react";
+
+import { useDispatch } from "react-redux";
+import { checkAuthFromLocalStorage } from "./redux/actions/authActions";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(checkAuthFromLocalStorage());
+  }, [dispatch]);
   return (
     <>
       <BrowserRouter>
@@ -18,25 +26,24 @@ function App() {
           {/*forzo il footer in basso anche quando ce poco contenuto  */}
           {window.location.pathname !== "/login" &&
             window.location.pathname !== "/register" &&
-            window.location.pathname !== "/logout" &&
             window.location.pathname !== "/" && <MyNavBar />}
 
           <main>
             <Routes>
               <Route path="/" element={<WelcomePage />} />
-              <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
+              <Route path="/login" element={<LoginPage />} />
               <Route path="/home" element={<Home />} />
               <Route path="/weekly-plan" element={<WeeklyPlan />} />
               <Route path="/groceries" element={<Groceries />} />
               <Route path="/recipes/:id" element={<Recipe />} />
+
               {/* <Route path="/lpgout" element={<LogoutButton />} /> */}
             </Routes>
           </main>
 
           {window.location.pathname !== "/login" &&
             window.location.pathname !== "/register" &&
-            window.location.pathname !== "/logout" &&
             window.location.pathname !== "/" && <MyFooter />}
         </div>
       </BrowserRouter>
