@@ -44,10 +44,10 @@ const MyNavBar = () => {
               <HouseFill className="fs-4" />
               <p className="fs-6 m-0">Home</p>
             </Nav.Link>
-            <Nav.Link as={Link} to="/weekly-plan">
+            {/*  <Nav.Link as={Link} to="/saved-plans">
               <CalendarFill className="fs-4" />
-              <p className="fs-6 m-0">Piani</p>
-            </Nav.Link>
+              <p className="fs-6 m-0">Piani </p>
+            </Nav.Link> */}
             <Nav.Link as={Link} to="/groceries">
               <CartFill className="fs-4" />
               <p className="fs-6 m-0">Spesa</p>

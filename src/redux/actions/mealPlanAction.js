@@ -1,6 +1,7 @@
 export const SET_WEEKLY_PLAN = "SET_WEEKLY_PLAN";
 export const SET_ERROR = "SET_ERROR";
 export const SET_LOADING = "SET_LOADING";
+export const UPDATE_MEAL_PLAN_WEEK = "UPDATE_MEAL_PLAN_WEEK";
 
 export const generateWeeklyPlanFromSearch = (diet) => async (dispatch) => {
   dispatch({ type: SET_LOADING });
@@ -31,17 +32,50 @@ export const generateWeeklyPlanFromSearch = (diet) => async (dispatch) => {
       DOMENICA: " DOMENICA",
     };
 
-    data.forEach((entry) => {
+    /*  data.forEach((entry) => {
       const day = dayMap[entry.giorno];
       if (!week[day]) {
         week[day] = { meals: [] };
-      }
+      } */
 
-      week[day].meals.push({
+    /* week[day].meals.push({
         nome: entry.pasto.nome,
         descrizione: entry.pasto.ricetta.procedimento,
         imgUrl: entry.pasto.imgUrl,
         id: entry.pasto.id || `${entry.giorno}-${entry.categoriaPasto}`,
+      });
+    }); */
+
+    // Raggruppa pasti per giorno e categoria
+    const groupedByDayAndType = {};
+
+    data.forEach((entry) => {
+      const giorno = dayMap[entry.giorno];
+      const categoria = entry.categoriaPasto; // Es. "PRANZO" o "CENA"
+
+      if (!groupedByDayAndType[giorno]) {
+        groupedByDayAndType[giorno] = { PRANZO: [], CENA: [] };
+      }
+
+      groupedByDayAndType[giorno][categoria].push(entry);
+    });
+
+    // Per ogni giorno, scegli 1 pranzo e 1 cena random
+    Object.entries(groupedByDayAndType).forEach(([giorno, pastiPerTipo]) => {
+      week[giorno] = { meals: [] };
+
+      ["PRANZO", "CENA"].forEach((categoria) => {
+        const pasti = pastiPerTipo[categoria];
+        if (pasti && pasti.length > 0) {
+          const randomIndex = Math.floor(Math.random() * pasti.length);
+          const entry = pasti[randomIndex];
+          week[giorno].meals.push({
+            nome: entry.pasto.nome,
+            descrizione: entry.pasto.ricetta.procedimento,
+            imgUrl: entry.pasto.imgUrl,
+            id: entry.pasto.id || `${entry.giorno}-${entry.categoriaPasto}`,
+          });
+        }
       });
     });
 
@@ -56,3 +90,7 @@ export const generateWeeklyPlanFromSearch = (diet) => async (dispatch) => {
     });
   }
 };
+export const updateMealPlanWeek = (newWeek) => ({
+  type: UPDATE_MEAL_PLAN_WEEK,
+  payload: newWeek,
+});

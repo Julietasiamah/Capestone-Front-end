@@ -1,4 +1,4 @@
-import { SET_ERROR, SET_LOADING, SET_WEEKLY_PLAN } from "../actions/mealPlanAction";
+import { SET_ERROR, SET_LOADING, SET_WEEKLY_PLAN, UPDATE_MEAL_PLAN_WEEK } from "../actions/mealPlanAction";
 
 // Stato iniziale
 const initialState = {
@@ -21,6 +21,17 @@ const mealPlanReducer = (state = initialState, action) => {
       return {
         ...state,
         weeklyPlan: action.payload,
+        loading: false,
+        error: null,
+      };
+
+    case UPDATE_MEAL_PLAN_WEEK:
+      return {
+        ...state,
+        weeklyPlan: {
+          ...state.weeklyPlan,
+          week: action.payload,
+        },
         loading: false,
         error: null,
       };

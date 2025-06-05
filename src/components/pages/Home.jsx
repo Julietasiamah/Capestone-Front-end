@@ -43,7 +43,9 @@ const Home = () => {
 
       <Row className="mt-5">
         <Col>
-          <h4 className="mb-3 text-white">Preferenze Alimentari</h4>
+          <h4 className="mb-3 " style={{ color: "#c0c0c0" }}>
+            Preferenze Alimentari
+          </h4>
 
           <Row>
             {preferences.map((pref, idx) => (

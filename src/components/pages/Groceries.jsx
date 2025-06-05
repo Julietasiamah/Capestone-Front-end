@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, ListGroup, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Groceries = () => {
   const [item, setItem] = useState("");
   const [list, setList] = useState([]);
+  const navigate = useNavigate(); // Hook per la navigazione
 
   // Carica la lista salvata al primo render
   useEffect(() => {
@@ -51,7 +53,6 @@ const Groceries = () => {
           </Button>
         </Col>
       </Row>
-
       <ListGroup className="mt-4">
         {list.map((grocery, index) => (
           <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center">
@@ -62,6 +63,17 @@ const Groceries = () => {
           </ListGroup.Item>
         ))}
       </ListGroup>
+      <div>
+        <Button onClick={() => setList([])} variant="danger" className="mt-4">
+          Pulisci Lista
+        </Button>
+      </div>
+      {/* al click del bottone indirizza alla pagina delle ricette */}
+      <div className="mt-3">
+        <Button onClick={() => navigate(-1)} className="mb-3" id="register-button">
+          Torna indietro
+        </Button>
+      </div>
     </Container>
   );
 };
