@@ -27,6 +27,7 @@ const Groceries = () => {
         setList((prev) => [...prev, ...nuovi]);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recipe]);
 
   useEffect(() => {
