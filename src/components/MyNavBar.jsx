@@ -2,7 +2,7 @@ import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import Mylogo from "../assets/logo.jpg";
 
 import { Link, useNavigate } from "react-router-dom";
-import { CalendarFill, CartFill, GearFill, HouseFill } from "react-bootstrap-icons";
+import { CartFill, HouseFill, PersonBadgeFill } from "react-bootstrap-icons";
 import LogoutButton from "./LogoutButton";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -51,6 +51,10 @@ const MyNavBar = () => {
             <Nav.Link as={Link} to="/groceries">
               <CartFill className="fs-4" />
               <p className="fs-6 m-0">Spesa</p>
+            </Nav.Link>
+            <Nav.Link as={Link} to="/profile">
+              <PersonBadgeFill className="fs-4" />
+              <p className="fs-6 m-0">Profile</p>
             </Nav.Link>
             <Nav.Link as={Link} to={"/"} onClick={handleLogout}>
               <LogoutButton />

@@ -13,7 +13,8 @@ import { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 import { checkAuthFromLocalStorage } from "./redux/actions/authActions";
-import SavedPlans from "./components/SavedPlan";
+//import SavedPlans from "./components/SavedPlan";
+import ProfilePage from "./components/pages/ProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,8 @@ function App() {
               <Route path="/weekly-plan" element={<WeeklyPlan />} />
               <Route path="/groceries" element={<Groceries />} />
               <Route path="/recipes/:id" element={<Recipe />} />
+              <Route path="/profile" element={<ProfilePage />} />
+
               {/* <Route path="/saved-plans" element={<SavedPlans />} /> */}
 
               {/* <Route path="/lpgout" element={<LogoutButton />} /> */}

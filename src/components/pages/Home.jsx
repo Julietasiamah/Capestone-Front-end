@@ -5,19 +5,9 @@ import Onnivoro from "../../assets/Onnivoro.avif";
 import Vegano from "../../assets/veg.avif";
 import Senzaglu from "../../assets/senzaglu2.jpg";
 
-/* import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { fetchWeeklyMealPlan } from "../../redux/action/mealPlanAction"; */
 import DietPreferenceCard from "../DietPreferenceCard";
 
 const Home = () => {
-  /* const dispatch = useDispatch();
-  const navigate = useNavigate(); */
-  /* const handleDietClick = (diet) => {
-    dispatch(fetchWeeklyMealPlan(diet)); //Genera piano settimanale per la dieta selezionata
-    navigate("/weekly-plan");
-  }; */
-
   const preferences = [
     { title: "Nessuna preferenza", image: Onnivoro, diet: "CARNIVORO" },
     { title: "Vegetariano", image: Vegetarian, diet: "VEGETARIANO" },

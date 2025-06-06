@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { fetchRecipeByMealId } from "../../redux/actions/recipeAction";
-import WeeklyPlan from "./WeeklyPlan";
 
 const Recipe = () => {
   const { id } = useParams();
