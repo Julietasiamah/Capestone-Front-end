@@ -17,7 +17,7 @@ export const register = createAsyncThunk("auth/register", async (formData, { dis
       throw new Error(data.message || "Errore nella registrazione");
     }
 
-    // ✅ Salvataggio SOLO se la risposta è OK
+    // Salvataggio SOLO se la risposta è OK
     console.log("Dati ricevuti", data);
     localStorage.setItem("token", data.token);
     localStorage.setItem("user", JSON.stringify(data.user));

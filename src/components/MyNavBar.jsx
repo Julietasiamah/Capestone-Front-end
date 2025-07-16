@@ -16,10 +16,7 @@ const MyNavBar = () => {
   const navigate = useNavigate();
 
   if (!user) return null; // Non mostrare nulla se non loggato
-  // //al click del link logout,nascondi la navbar
-  // const hideNavbar = () => (dispatch) => {
-  //   dispatch(logout());
-  // };
+
   console.log(user);
 
   //Funzione per fare sparire la navbar al click del bottone logout
@@ -44,10 +41,7 @@ const MyNavBar = () => {
               <HouseFill className="fs-4" />
               <p className="fs-6 m-0">Home</p>
             </Nav.Link>
-            {/*  <Nav.Link as={Link} to="/saved-plans">
-              <CalendarFill className="fs-4" />
-              <p className="fs-6 m-0">Piani </p>
-            </Nav.Link> */}
+
             <Nav.Link as={Link} to="/groceries">
               <CartFill className="fs-4" />
               <p className="fs-6 m-0">Spesa</p>

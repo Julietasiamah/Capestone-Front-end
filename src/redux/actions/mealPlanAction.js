@@ -32,20 +32,6 @@ export const generateWeeklyPlanFromSearch = (diet) => async (dispatch) => {
       DOMENICA: " DOMENICA",
     };
 
-    /*  data.forEach((entry) => {
-      const day = dayMap[entry.giorno];
-      if (!week[day]) {
-        week[day] = { meals: [] };
-      } */
-
-    /* week[day].meals.push({
-        nome: entry.pasto.nome,
-        descrizione: entry.pasto.ricetta.procedimento,
-        imgUrl: entry.pasto.imgUrl,
-        id: entry.pasto.id || `${entry.giorno}-${entry.categoriaPasto}`,
-      });
-    }); */
-
     // Raggruppa pasti per giorno e categoria
     const groupedByDayAndType = {};
 
@@ -66,7 +52,7 @@ export const generateWeeklyPlanFromSearch = (diet) => async (dispatch) => {
 
       ["PRANZO", "CENA"].forEach((categoria) => {
         const pasti = pastiPerTipo[categoria];
-        if (pasti && pasti.length > 0) {
+        if (pasti.length > 0) {
           const randomIndex = Math.floor(Math.random() * pasti.length);
           const entry = pasti[randomIndex];
           week[giorno].meals.push({

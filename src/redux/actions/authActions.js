@@ -29,30 +29,12 @@ export const login = createAsyncThunk("auth/login", async (credentials, { dispat
 });
 
 //verifica autenticazione da LocalStorage
-/* export const checkAuthFromLocalStorage = () => (dispatch) => {
-  const token = localStorage.getItem("token");
-  const user = localStorage.getItem("user");
-  console.log(user);
-  console.log(token);
-  if (token && user) {
-    try {
-      const parsedUser = JSON.parse(user);
-      dispatch(loginSuccess({ user: parsedUser, token }));
-    } catch (e) {
-      console.error("Errore parsing user da localStorage:", e);
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
-    }
-  }
-}; */
 
 export const checkAuthFromLocalStorage = () => (dispatch) => {
   const token = localStorage.getItem("token");
   const userString = localStorage.getItem("user");
 
-  console.log("user:", userString); // Debug, puoi rimuoverlo dopo
-
-  if (token && userString && userString !== "undefined") {
+  if (token && userString !== "undefined") {
     try {
       const user = JSON.parse(userString);
       dispatch(loginSuccess({ user, token }));
