@@ -84,34 +84,6 @@ p {
   margin: 1rem 0;
 }
 
-/* Buttons */
-/* .btn-primary {
-  background-color: var(--primary-color);
-  border: none;
-  border-radius: var(--border-radius);
-  padding: 0.6rem 1.2rem;
-  font-weight: 600;
-  color: #fff;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.btn-primary:hover {
-  background-color: #8daa91;
-}
-
-.btn-accent {
-  background-color: var(--accent-color);
-  color: #fff;
-  border-radius: var(--border-radius);
-  padding: 0.6rem 1.2rem;
-  border: none;
-  font-weight: 600;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.btn-accent:hover {
-  background-color: #c76045;
-} */
 /*Form*/
 #register {
   color: #172b3a;

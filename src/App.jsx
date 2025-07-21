@@ -56,16 +56,4 @@ function App() {
   );
 }
 
-/* import ProtectedRoute from "./components/ProtectedRoute";
-
-<Routes>
-  <Route path="/" element={<Home />} />
-  <Route
-    path="/weekly-plan"
-    element={
-      <ProtectedRoute>
-        <WeeklyPlan />
-      </ProtectedRoute>
-    } */
-
 export default App;
