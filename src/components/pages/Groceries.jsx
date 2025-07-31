@@ -10,16 +10,24 @@ const Groceries = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Controlla se esiste `recipe`, se ha la proprietà `ingredienti`
+    // e se `ingredienti` è una stringa
     if (recipe && recipe.ingredienti && typeof recipe.ingredienti === "string") {
+      // Divide la stringa degli ingredienti in un array separando per virgole
+      // Rimuove gli spazi attorno a ogni elemento e scarta quelli vuoti
       const ingredients = recipe.ingredienti
         .split(",")
         .map((ing) => ing.trim())
         .filter((ing) => ing !== "");
+      // Filtra solo gli ingredienti che non sono già presenti nella lista
       const nuovi = ingredients.filter((ing) => !list.includes(ing));
+      // Se ci sono nuovi ingredienti, li aggiunge alla lista
       if (nuovi.length > 0) {
         setList((prev) => [...prev, ...nuovi]);
       }
     }
+    //Ogni volta che il valore di recipe cambia (es. caricamento di una nuova ricetta),
+    // React riesegue il blocco di codice dentro useEffect
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recipe]);
 
