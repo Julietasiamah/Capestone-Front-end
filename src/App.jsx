@@ -23,6 +23,7 @@ function App() {
   // Questo viene fatto una sola volta quando l'app viene montata
   useEffect(() => {
     dispatch(checkAuthFromLocalStorage());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
