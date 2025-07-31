@@ -10,13 +10,6 @@ const Groceries = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const savedList = localStorage.getItem("groceries");
-    if (savedList) {
-      setList(JSON.parse(savedList));
-    }
-  }, []);
-
-  useEffect(() => {
     if (recipe && recipe.ingredienti && typeof recipe.ingredienti === "string") {
       const ingredients = recipe.ingredienti
         .split(",")
