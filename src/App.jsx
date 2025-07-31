@@ -18,9 +18,12 @@ import ProfilePage from "./components/pages/ProfilePage";
 
 function App() {
   const dispatch = useDispatch();
+
+  // Effettua il controllo dell'autenticazione al caricamento dell'app
+  // Questo viene fatto una sola volta quando l'app viene montata
   useEffect(() => {
     dispatch(checkAuthFromLocalStorage());
-  }, [dispatch]);
+  }, []);
   return (
     <>
       <BrowserRouter>

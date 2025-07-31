@@ -30,20 +30,29 @@ export const login = createAsyncThunk("auth/login", async (credentials, { dispat
 
 //verifica autenticazione da LocalStorage
 
+// Funzione Redux Thunk che verifica la presenza di token e utente nel localStorage
 export const checkAuthFromLocalStorage = () => (dispatch) => {
+  // Recupera il token e l'utente salvati nel localStorage
   const token = localStorage.getItem("token");
   const userString = localStorage.getItem("user");
 
+  //Verifica se il token e l'utente sono presenti e validi
+  // Se il token esiste e l'utente non è "undefined", prova a fare il parsing dell'utente
   if (token && userString !== "undefined") {
     try {
+      // prova a convertire la stringa JSON in un oggetto
       const user = JSON.parse(userString);
+      // Se tutto va bene, invia un'azione Redux per aggiornare lo stato di autenticazione
       dispatch(loginSuccess({ user, token }));
     } catch (error) {
+      // Se la stringa non è valida (es. JSON corrotto), logga l'errore
       console.error("Errore parsing user da localStorage:", error);
+      // Rimuove dati non validi dal localStorage per evitare problemi futuri
       localStorage.removeItem("user");
       localStorage.removeItem("token");
     }
   } else {
+    // Se token o utente mancano o sono invalidi, pulisce il localStorage e avvisa nel log
     console.warn("Token o utente non trovato o non valido");
     localStorage.removeItem("user");
     localStorage.removeItem("token");
